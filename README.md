@@ -10,7 +10,7 @@ The initialization process contains several steps:
 
        dependencies {
            ...
-           implementation 'com.github.MultiToolDeveloper:DIoT-SDK-Android:1.0'  
+           implementation 'com.github.MultiToolDeveloper:DIoT-SDK-Android:1.0.0'  
            ...
        }
 
