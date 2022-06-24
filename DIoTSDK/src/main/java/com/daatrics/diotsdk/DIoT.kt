@@ -1,4 +1,4 @@
-package com.daatrics.diotdemoapp.diotsdk.bluetooth
+package com.daatrics.diotdemoapp.diotsdk
 
 import android.content.Context
 import com.daatrics.diotdemoapp.diotsdk.bluetooth.dispatcher.DIoTAndroidBleDispatcher
@@ -6,7 +6,7 @@ import com.daatrics.diotdemoapp.diotsdk.bluetooth.diotbluetoothmanager.*
 import com.daatrics.diotdemoapp.diotsdk.support.diotlogger.LoggerService
 import com.daatrics.diotdemoapp.diotsdk.support.diotlogger.interfaces.LoggerServiceProtocol
 
-class DIoTSDK() {
+class DIoT() {
 
     companion object {
         lateinit var context: Context

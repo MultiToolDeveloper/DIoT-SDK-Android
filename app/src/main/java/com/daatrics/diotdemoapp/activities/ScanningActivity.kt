@@ -17,7 +17,7 @@ import com.daatrics.diotdemoapp.diotsdk.bluetooth.diotbluetoothdevices.diot.DIoT
 import com.daatrics.diotdemoapp.diotsdk.bluetooth.diotbluetoothmanager.*
 import com.daatrics.diotdemoapp.activities.device.DeviceTabBarActivity
 import com.daatrics.diotdemoapp.adapters.ScanningTableAdapter
-import com.daatrics.diotdemoapp.diotsdk.bluetooth.DIoTSDK
+import com.daatrics.diotdemoapp.diotsdk.DIoT
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 
@@ -48,7 +48,7 @@ class ScanningActivity : AppCompatActivity(),
 
             isScanning = false
             scanButton.text = "Scan"
-            DIoTSDK.bluetoothManager?.stopScan()
+            DIoT.bluetoothManager?.stopScan()
             adapter.devices.clear()
             adapter.notifyDataSetChanged()
 
@@ -58,15 +58,15 @@ class ScanningActivity : AppCompatActivity(),
 
         scanButton.setOnClickListener {
 
-            DIoTSDK.bluetoothManager?.fetchBluetoothPowerState()
+            DIoT.bluetoothManager?.fetchBluetoothPowerState()
 
             isScanning = !isScanning
             if (isScanning) {
                 scanButton.text = "Stop"
-                DIoTSDK.bluetoothManager?.startScan(null, null)
+                DIoT.bluetoothManager?.startScan(null, null)
             } else {
                 scanButton.text = "Scan"
-                DIoTSDK.bluetoothManager?.stopScan()
+                DIoT.bluetoothManager?.stopScan()
                 adapter.devices.clear()
                 adapter.notifyDataSetChanged()
             }
@@ -77,14 +77,14 @@ class ScanningActivity : AppCompatActivity(),
 
     override fun onPause() {
         super.onPause()
-        DIoTSDK.bluetoothManager?.unsubscribe(this, DIoTBluetoothManagerSubscriptionType.scan)
-        DIoTSDK.bluetoothManager?.subscribe(this, DIoTBluetoothManagerSubscriptionType.state)
+        DIoT.bluetoothManager?.unsubscribe(this, DIoTBluetoothManagerSubscriptionType.scan)
+        DIoT.bluetoothManager?.subscribe(this, DIoTBluetoothManagerSubscriptionType.state)
     }
 
     override fun onResume() {
         super.onResume()
-        DIoTSDK.bluetoothManager?.subscribe(this, DIoTBluetoothManagerSubscriptionType.scan)
-        DIoTSDK.bluetoothManager?.subscribe(this, DIoTBluetoothManagerSubscriptionType.state)
+        DIoT.bluetoothManager?.subscribe(this, DIoTBluetoothManagerSubscriptionType.scan)
+        DIoT.bluetoothManager?.subscribe(this, DIoTBluetoothManagerSubscriptionType.state)
     }
 
     //DIoTBluetoothManagerScanningDelegate

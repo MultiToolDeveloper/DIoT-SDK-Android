@@ -1,7 +1,7 @@
 package com.daatrics.diotdemoapp
 
 import android.app.Application
-import com.daatrics.diotdemoapp.diotsdk.bluetooth.DIoTSDK
+import com.daatrics.diotdemoapp.diotsdk.DIoT
 
 class App : Application() {
 
@@ -9,6 +9,6 @@ class App : Application() {
         super.onCreate()
 
         //do init the iot sdk
-        DIoTSDK.initialize(this)
+        DIoT.initialize(this)
     }
 }

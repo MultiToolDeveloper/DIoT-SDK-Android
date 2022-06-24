@@ -45,7 +45,7 @@ The initialization process contains several steps:
            override fun onCreate() {
                super.onCreate()
                //do init the iot sdk
-               DIoTSDK.initialize(this)
+               DIoT.initialize(this)
            }
        }
 
@@ -63,9 +63,9 @@ The main module of the Bluetooth SDK part is DIoTBluetoothManager. This class is
 		}
 To get the scan result, you need to subscribe to DIoTBluetoothManager events for example:
 
-		DIoTSDK.bluetoothManager?.subscribe(this, DIoTBluetoothManagerSubscriptionType.scan)
-		DIoTSDK.bluetoothManager?.startScan(null, null)
-		DIoTSDK.bluetoothManager?.stopScan()
+		DIoT.bluetoothManager?.subscribe(this, DIoTBluetoothManagerSubscriptionType.scan)
+		DIoT.bluetoothManager?.startScan(null, null)
+		DIoT.bluetoothManager?.stopScan()
 
 You will receive a callback to your delegate implementation:
 
@@ -76,8 +76,8 @@ You will receive a callback to your delegate implementation:
 
 To get information about the status of the BT hardware module, you need to subscribe to DIoTBluetoothManager events, for example:
 
-		DIoTSDK.bluetoothManager?.subscribe(this, DIoTBluetoothManagerSubscriptionType.state)
-		DIoTSDK.bluetoothManager?.fetchBluetoothPowerState()
+		DIoT.bluetoothManager?.subscribe(this, DIoTBluetoothManagerSubscriptionType.state)
+		DIoT.bluetoothManager?.fetchBluetoothPowerState()
 
 After the request next delegate will be triggered:
 
