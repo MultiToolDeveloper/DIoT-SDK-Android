@@ -149,61 +149,61 @@ Let's try to get data from the DIoT Command Interface service.
 
 1) Subscribe to receive data from the DIoT Command Interface service
 
-   	device?.commandInterfaceService?.subscribe(this)
+   		device?.commandInterfaceService?.subscribe(this)
 2) Implement delegate methods:
 
-   	//DIoTCommandInterfaceBluetoothServiceDelegate
-   	override fun didReceiveCommandFeatures(
-   		service: DIoTCommandInterfaceBluetoothServiceProtocol,
-   		dataFeatures: ArrayList<DIoTFeatureData>
-   	) {
-   	}
+		//DIoTCommandInterfaceBluetoothServiceDelegate
+		override fun didReceiveCommandFeatures(
+			service: DIoTCommandInterfaceBluetoothServiceProtocol,
+			dataFeatures: ArrayList<DIoTFeatureData>
+		) {
+		}
 
-   	override fun didReceiveCommandChannels(
-   		service: DIoTCommandInterfaceBluetoothServiceProtocol,
-   		dataChannels: ArrayList<DIoTChannelData>
-   	) {
-   	}
+		override fun didReceiveCommandChannels(
+			service: DIoTCommandInterfaceBluetoothServiceProtocol,
+			dataChannels: ArrayList<DIoTChannelData>
+		) {
+		}
 
-   	override fun didReceiveCommandRate(
-   		service: DIoTCommandInterfaceBluetoothServiceProtocol,
-   		dataRates: ArrayList<DIoTRateData>
-   	) {
-   	}
+		override fun didReceiveCommandRate(
+			service: DIoTCommandInterfaceBluetoothServiceProtocol,
+			dataRates: ArrayList<DIoTRateData>
+		) {
+		}
 
-   	override fun didReceiveError(
-   		service: DIoTCommandInterfaceBluetoothServiceProtocol,
-   		error: DIoTCommandInterfaceBluetoothServiceError
-   	) {
-   	}
+		override fun didReceiveError(
+			service: DIoTCommandInterfaceBluetoothServiceProtocol,
+			error: DIoTCommandInterfaceBluetoothServiceError
+		) {
+		}
 
-   	override fun didWriteCommandFeatures(service: DIoTCommandInterfaceBluetoothServiceProtocol) {
-   	}
+		override fun didWriteCommandFeatures(service: DIoTCommandInterfaceBluetoothServiceProtocol) {
+		}
 
-   	override fun didWriteCommandChannels(service: DIoTCommandInterfaceBluetoothServiceProtocol) {
-   	}
+		override fun didWriteCommandChannels(service: DIoTCommandInterfaceBluetoothServiceProtocol) {
+		}
 
-   	override fun didWriteCommandRate(service: DIoTCommandInterfaceBluetoothServiceProtocol) {
-   	}
+		override fun didWriteCommandRate(service: DIoTCommandInterfaceBluetoothServiceProtocol) {
+		}
 
-   	override fun subscriptionFeaturesStatusChange(
-   		service: DIoTCommandInterfaceBluetoothServiceProtocol,
-   		enabled: Boolean
-   	) {
-   	}
+		override fun subscriptionFeaturesStatusChange(
+			service: DIoTCommandInterfaceBluetoothServiceProtocol,
+			enabled: Boolean
+		) {
+		}
 
-   	override fun subscriptionChannelsStatusChange(
-   		service: DIoTCommandInterfaceBluetoothServiceProtocol,
-   		enabled: Boolean
+		override fun subscriptionChannelsStatusChange(
+			service: DIoTCommandInterfaceBluetoothServiceProtocol,
+			enabled: Boolean
 
-   	) {
-   	}
+		) {
+		}
 
-   	override fun subscriptionRatesStatusChange(
-   		service: DIoTCommandInterfaceBluetoothServiceProtocol,
-   		enabled: Boolean
-   	) {
-   	}
+		override fun subscriptionRatesStatusChange(
+			service: DIoTCommandInterfaceBluetoothServiceProtocol,
+			enabled: Boolean
+		) {
+		}
 
 3) Request data
 
@@ -246,4 +246,4 @@ A data response will be received in the delegate which was set up by subscribe f
 
 4) Unsubscribe from data events
 
-   	device?.commandInterfaceService?.unsubscribe(this)
+   		device?.commandInterfaceService?.unsubscribe(this)
