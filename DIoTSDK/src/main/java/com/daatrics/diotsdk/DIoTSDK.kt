@@ -12,7 +12,7 @@ class DIoTSDK() {
         lateinit var context: Context
         var isInitialised = false
 
-        fun initialise(context: Context){
+        fun initialize(context: Context){
 
             if (isInitialised)
                 return

@@ -9,6 +9,6 @@ class App : Application() {
         super.onCreate()
 
         //do init the iot sdk
-        DIoTSDK.initialise(this)
+        DIoTSDK.initialize(this)
     }
 }
