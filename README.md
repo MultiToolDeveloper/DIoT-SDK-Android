@@ -1,16 +1,20 @@
 # DIoT Android SDK
 
-Welcome to DIoT Android SDK Demo Application page!
+**Welcome to DIoT Android SDK Application page!**
+
 DIoT is a platform for different IoT devices provided by Daatrics LTD company.
-Current SDK is released for both iOS and Android systems and and you are free to use in to implement connectivity between your phone and device via BLE.
+The current SDK is released for iOS and Android systems and and you are free to use it to implement a connectivity between your phone and device via BLE. 
+
+SDK project also contains demo apps with a whole work flow implementation.
 
 ## Initialization
+
 The initialization process contains several steps:
 1) Add SDK dependency to your app **build.gradle** module:
 
        dependencies {
            ...
-           implementation 'com.github.MultiToolDeveloper:DIoT-SDK-Android:1.0.0'  
+           implementation 'com.github.MultiToolDeveloper:DIoT-SDK-Android:1.0.1'  
            ...
        }
 
@@ -22,7 +26,7 @@ The initialization process contains several steps:
            ...
        }
 
-3) Add Bluetooth and Location permissions in **AndroidManifest.xml**
+3) Add Bluetooth and Location permissions to **AndroidManifest.xml**
 
        <manifest
            ...
@@ -50,7 +54,8 @@ The initialization process contains several steps:
        }
 
 ## Scanning
-The main module of the Bluetooth SDK part is DIoTBluetoothManager. This class is used as an additional level after the system classes BluetoothManager and BluetoothAdapter. Its tasks include: checking the status of the system BT adapter, scanning BLE devices, forwarding status events to subscribers of the service.
+
+The main SDK Bluetooth module is DIoTBluetoothManager. This class is used as an additional level after the system classes BluetoothManager and BluetoothAdapter. It is used to: checking the status of the BT system adapter, scanning BLE devices, forwarding status events to service subscribers.
 
 		interface DIoTBluetoothManagerProtocol {
 			val context: Context
@@ -61,7 +66,8 @@ The main module of the Bluetooth SDK part is DIoTBluetoothManager. This class is
 			fun startScan(service: UUID?, name: String?)
 			fun stopScan()
 		}
-To get the scan result, you need to subscribe to DIoTBluetoothManager events for example:
+		
+To get the scan result, you need to subscribe to DIoTBluetoothManager events, for example:
 
 		DIoT.bluetoothManager?.subscribe(this, DIoTBluetoothManagerSubscriptionType.scan)
 		DIoT.bluetoothManager?.startScan(null, null)
@@ -88,7 +94,7 @@ After the request next delegate will be triggered:
 			fun bluetoothManagerNoBLESupport(manager: DIoTBluetoothManagerProtocol)
 		}
 
-## Connection
+## Device
 
 As a result of the scan, one or more DIoT devices will be returned, this class contains connection functions, a list of services and signal strength determination, as well as information about the device (name, id, etc.):
 
@@ -106,9 +112,21 @@ As a result of the scan, one or more DIoT devices will be returned, this class c
 			var debugService: DIoTDebugBluetoothServiceProtocol?
 		}
 
+Device structure contains services and functions with data structures is used to communication with IoT device via BLE connection.
+
+- connectionService is used to connect and disconnect to current device
+- deviceInformationService is used to get device's version information
+- batteryService is used to get device's battery information
+- commandInterfaceService is used to get current device features, and setup connection between features and data channels (for example: 1 -  get list of the current device features; 2 - get one of those features and connect it to the data channel; 3 - set up the data rate on the target data channel). The data rate sets up like integer number in ms (the current channel update delay), default data rate is 0 or auto update.
+- dataInterfaceService is used to get data from the connected features (each device content up to 9 data channels with indexes: 1...9)
+- deviceIdentifierService - is used to receive device UUID
+- debugService - is used to communicate with internal CLI
+
+## Connection
+
 To connect to the device, you must use the connect method in the ConnectionService service of the DIoTBluetoothDevice class:
 
-		var device: DIoTBluetoothDevice? = null
+		var device: DIoTBluetoothDevice? = ... //result of scan
 		device?.connectionService?.subscribe(this)
 		device?.connectionService?.connect()
 
@@ -150,9 +168,8 @@ Let's try to get data from the DIoT Command Interface service.
 1) Subscribe to receive data from the DIoT Command Interface service
 
    		device?.commandInterfaceService?.subscribe(this)
-2) Implement delegate methods:
+2) Implement the DIoTCommandInterfaceBluetoothServiceDelegate methods:
 
-		//DIoTCommandInterfaceBluetoothServiceDelegate
 		override fun didReceiveCommandFeatures(
 			service: DIoTCommandInterfaceBluetoothServiceProtocol,
 			dataFeatures: ArrayList<DIoTFeatureData>
@@ -234,7 +251,7 @@ All possible data requests are showed in class interface source file:
 			fun unsubscribe(subscriber: DIoTCommandInterfaceBluetoothServiceDelegate)
 		}
 
-We an use it as an example:
+For example:
 
 		device?.commandInterfaceService?.fetchFeature(featureData.getFeatureCode())
 		device?.commandInterfaceService?.cleanFeature(featureData.getFeatureCode())
