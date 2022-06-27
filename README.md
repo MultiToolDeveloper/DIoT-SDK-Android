@@ -80,7 +80,7 @@ You will receive a callback to your delegate implementation:
 			fun didReceiveScanningError(manager: DIoTBluetoothManagerProtocol, error: DIoTBluetoothManagerScanningError)
 		}
 
-To get information about the status of the BT hardware module, you need to subscribe to DIoTBluetoothManager events, for an example:
+To get information about the status of the BT hardware module, you need to subscribe to DIoTBluetoothManager events, for example:
 
 		DIoT.bluetoothManager?.subscribe(this, DIoTBluetoothManagerSubscriptionType.state)
 		DIoT.bluetoothManager?.fetchBluetoothPowerState()
@@ -251,7 +251,7 @@ All possible data requests are showed in the class interface source file:
 			fun unsubscribe(subscriber: DIoTCommandInterfaceBluetoothServiceDelegate)
 		}
 
-For an example:
+For example:
 
 		device?.commandInterfaceService?.fetchFeature(featureData.getFeatureCode())
 		device?.commandInterfaceService?.cleanFeature(featureData.getFeatureCode())
