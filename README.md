@@ -55,7 +55,7 @@ The initialization process contains several steps:
 
 ## Scanning
 
-The main SDK Bluetooth module is DIoTBluetoothManager. This class is used as an additional level after the system classes BluetoothManager and BluetoothAdapter. It is used to: checking the status of the BT system adapter, scanning BLE devices, forwarding status events to service subscribers.
+The main SDK Bluetooth module is DIoTBluetoothManager. This class is used as an additional level after the system classes BluetoothManager and BluetoothAdapter. It is used to: check the status of the BT system adapter, scann BLE devices, forward status events to service subscribers.
 
 		interface DIoTBluetoothManagerProtocol {
 			val context: Context
@@ -126,7 +126,7 @@ Device structure contains services and functions with data structures is used to
 
 To connect to the device, you must use the connect method in the ConnectionService service of the DIoTBluetoothDevice class:
 
-		var device: DIoTBluetoothDevice? = ... //result of scan
+		var device: DIoTBluetoothDevice? = ... //result of a scan
 		device?.connectionService?.subscribe(this)
 		device?.connectionService?.connect()
 
